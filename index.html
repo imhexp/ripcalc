@@ -47,49 +47,13 @@
     </div>
     <form id="calculate-form">
       <div class="form-group">
-        <label for="anchoBloque">Ancho del bloque:</label>
-        <input type="text" class="form-control" name="anchoBloque" id="anchoBloque" required>
-      </div>
-      <div class="form-group">
-        <label for="anchoCaptura">Ancho de la captura:</label>
-        <input type="text" class="form-control" name="anchoCaptura" id="anchoCaptura" required>
-      </div>
-      <button type="button" class="btn btn-primary" data-operation="48x">48x</button>
-      <button type="button" class="btn btn-warning" data-operation="32x">32x</button>
-      <button type="button" class="btn btn-danger" data-operation="16x">16x</button>
-    </form>
+        <label for="anchoBloque">Lo sentimos mucho, pero este servicio ha dejado de dar soporte como protesta a los constantes retrasos de SMM:WE 3.4.0F</label>
 
-    <div class="mt-4">
-      <h3>Resultado:</h3>
-      <p id="resultado"></p>
-    </div>
-
-    <p>Calculadora creada por HeXp. Versión 1.0.4.</p>
+    <p>Si necesitas usar el servicio con urgencia, escribeme a hexpdp@gmail.com o a @imhexp en Discord. HeXp's Works - 2023-2023</p>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const calculateForm = document.getElementById("calculate-form");
-      const resultadoElement = document.getElementById("resultado");
-
-      calculateForm.addEventListener("click", function (event) {
-        if (event.target.tagName === "BUTTON") {
-          const anchoBloque = parseFloat(document.getElementById("anchoBloque").value);
-          const anchoCaptura = parseFloat(document.getElementById("anchoCaptura").value);
-          const operation = event.target.getAttribute("data-operation");
-          let resultado;
-
-          if (operation === "32x") {
-            resultado = Math.round((anchoCaptura * 32) / anchoBloque);
-          } else if (operation === "16x") {
-            resultado = Math.round((anchoCaptura * 16) / anchoBloque);
-          } else if (operation === "48x") {
-            resultado = Math.round((anchoCaptura * 48) / anchoBloque);
-          }
-
-          resultadoElement.textContent = resultado;
         }
       });
     });
