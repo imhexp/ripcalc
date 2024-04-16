@@ -11,13 +11,13 @@
     <link rel="icon" href="img/block.png" type="image/png">
     <style>
         @font-face {
-            font-family: 'GoogleFont';
-            src: url('fnt/google.ttf') format('truetype');
+            font-family: 'Pixel';
+            src: url('fnt/pixel.ttf') format('truetype');
         }
 
         body {
-            font-family: 'GoogleFont'; /* Sets the font */
-            background-color: #1a1a1a;
+            font-family: 'Pixel';
+            background-image: url('img/bgif.gif');
             color: #ffffff;
         }
 
@@ -51,77 +51,83 @@
             text-align: center;
             color: #c9c9c7;
         }
+
+        .content-container {
+            background-image: url('img/bg2.png');
+            border-radius: 20px;
+            padding: 20px;
+        }
     </style>
 </head>
 
 <body>
-  <div class="container mt-5">
-    <div class="banner-container">
-      <a href="index.html">
-        <img class="banner-img" src="img/banner.png" alt="Banner">
-      </a>
+    <div class="container mt-5">
+        <!-- Contenedor del contenido -->
+        <div class="content-container">
+            <div class="banner-container">
+                <a href="index.html">
+                    <img class="banner-img" src="img/banner.png" alt="Banner">
+                </a>
+            </div>
+
+            <form id="calculate-form">
+                <div class="form-group">
+                    <label for="anchoBloque">Ancho del bloque:</label>
+                    <input type="text" class="form-control" name="anchoBloque" id="anchoBloque" placeholder="Por ejemplo, 22" required>
+                </div>
+                <div class="form-group">
+                    <label for="anchoCaptura">Ancho de la captura:</label>
+                    <input type="text" class="form-control" name="anchoCaptura" id="anchoCaptura" placeholder="Por ejemplo, 76" required>
+                </div>
+                <button type="button" class="btn btn-primary" data-operation="128x">128x</button>
+                <button type="button" class="btn btn-warning" data-operation="64x">64x</button>
+                <button type="button" class="btn btn-danger" data-operation="48x">48x</button>
+                <button type="button" class="btn btn-primary" data-operation="32x">32x</button>
+                <button type="button" class="btn btn-warning" data-operation="24x">24x</button>
+                <button type="button" class="btn btn-danger" data-operation="16x">16x</button>
+            </form>
+            <div class="mt-4">
+                <h3> Resultado:</h3>
+                <h5 id="resultado"></h5>
+            </div>
+            <div class="footer">
+                <p>Calculadora creada por HeXp. Versión 2.1.0</p>
+            </div>
+        </div> <!-- Cierre del contenedor del contenido -->
     </div>
 
-    <form id="calculate-form">
-      <div class="form-group">
-        <label for="anchoBloque">Ancho del bloque:</label>
-        <input type="text" class="form-control" name="anchoBloque" id="anchoBloque" required>
-      </div>
-      <div class="form-group">
-        <label for="anchoCaptura">Ancho de la captura:</label>
-        <input type="text" class="form-control" name="anchoCaptura" id="anchoCaptura" required>
-      </div>
-      <button type="button" class="btn btn-primary" data-operation="128x">128x</button>
-      <button type="button" class="btn btn-warning" data-operation="64x">64x</button>
-      <button type="button" class="btn btn-danger" data-operation="48x">48x</button>
-      <button type="button" class="btn btn-primary" data-operation="32x">32x</button>
-      <button type="button" class="btn btn-warning" data-operation="24x">24x</button>
-      <button type="button" class="btn btn-danger" data-operation="16x">16x</button>
-    </form>
-    <div class="mt-4">
-      <h3> Resultado:</h3>
-      <h5 id="resultado"></h5>
-    </div>
-    <div class="footer">
-        <p>Calculadora creada por HeXp. Versión 2.0.0</p>
-    </div>
-  </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const calculateForm = document.getElementById("calculate-form");
+            const resultadoElement = document.getElementById("resultado");
 
+            calculateForm.addEventListener("click", function (event) {
+                if (event.target.tagName === "BUTTON") {
+                    const anchoBloque = parseFloat(document.getElementById("anchoBloque").value);
+                    const anchoCaptura = parseFloat(document.getElementById("anchoCaptura").value);
+                    const operation = event.target.getAttribute("data-operation");
+                    let resultado;
 
+                    if (operation === "32x") {
+                        resultado = Math.round((anchoCaptura * 32) / anchoBloque);
+                    } else if (operation === "16x") {
+                        resultado = Math.round((anchoCaptura * 16) / anchoBloque);
+                    } else if (operation === "48x") {
+                        resultado = Math.round((anchoCaptura * 48) / anchoBloque);
+                    } else if (operation === "24x") {
+                        resultado = Math.round((anchoCaptura * 24) / anchoBloque);
+                    } else if (operation === "64x") {
+                        resultado = Math.round((anchoCaptura * 64) / anchoBloque);
+                    } else if (operation === "128x") {
+                        resultado = Math.round((anchoCaptura * 128) / anchoBloque);
+                    }
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const calculateForm = document.getElementById("calculate-form");
-      const resultadoElement = document.getElementById("resultado");
-
-      calculateForm.addEventListener("click", function (event) {
-        if (event.target.tagName === "BUTTON") {
-          const anchoBloque = parseFloat(document.getElementById("anchoBloque").value);
-          const anchoCaptura = parseFloat(document.getElementById("anchoCaptura").value);
-          const operation = event.target.getAttribute("data-operation");
-          let resultado;
-
-          if (operation === "32x") {
-            resultado = Math.round((anchoCaptura * 32) / anchoBloque);
-          } else if (operation === "16x") {
-            resultado = Math.round((anchoCaptura * 16) / anchoBloque);
-          } else if (operation === "48x") {
-            resultado = Math.round((anchoCaptura * 48) / anchoBloque);
-          } else if (operation === "24x") {
-            resultado = Math.round((anchoCaptura * 24) / anchoBloque);
-          } else if (operation === "64x") {
-            resultado = Math.round((anchoCaptura * 64) / anchoBloque);
-          } else if (operation === "128x") {
-            resultado = Math.round((anchoCaptura * 128) / anchoBloque);
-          }
-
-
-          resultadoElement.textContent = resultado;
-        }
-      });
-    });
-  </script>
+                    resultadoElement.textContent = resultado;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
